@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Météo à Elysium Planitia</title>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    </head>
+    <body>
+
+        <div class="background-image" style="background-image:url({% static 'img/background.jpg' %})"></div>
+        <div class="weather">
+            <div class="content">
+                <p>Jour Martien: {{ day }}<b> - {% for datas in curr_day %}</b>{{ datas.current_month_text }} {{ datas.current_year_short }}</p>
+
+                <div class="sm-box-max">
+                    <p class="info"><img src="{% static 'img/hot.png' %}" height="20px" width="20px" title="Température max" class="ico">{{ datas.mx_temp }}°C</p>
+                </div>
+
+                <div class="sm-box-min">
+                    <p class="info"><img src="{% static 'img/cold.png' %}" height="20px" width="20px" title="Température min" class="ico">{{ datas.min_temp }}°C</p>
+                </div>
+
+                <div class="sm-box-avg">
+                    <p class="info"><img src="{% static 'img/avg.png' %}" height="20px" width="20px" title="Température moyenne" class="ico">{{ datas.avg_temp }}°C</p>
+                </div>
+
+                <b><hr /></b>
+
+                <div class="sm-box-season">
+                    <p class="info">Saison en cours: {{ datas.season }}</p>
+                </div>
+
+                <div class="sm-box-wind">
+                    <p class="info">Majorité du vent venant du: {{ datas.avg_dir_wind }}</p>
+                </div>
+            </div>
+        </div>
+
+        <form class="form_next" method="post" action="{% url 're_dir_next' day %}">
+            <div class="next">
+                <button class="button_next" type="submit" style="vertical-align:middle"><span>Jour suivant</span></button>
+            </div>
+            {% csrf_token %}
+        </form>
+
+        <form class="form_prev" method="post" action="{% url 're_dir_prev' day %}">
+            <div class="prev">
+                <button class="button_prev" type="submit" style="vertical-align:middle"><span>Jour précédent</span></button>
+            </div>
+            {% csrf_token %}
+        </form>
+        {% endfor %}
+    </body>
+</html>

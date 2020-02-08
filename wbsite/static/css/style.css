@@ -1,0 +1,227 @@
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -o-filter: blur(8px);
+  -ms-filter: blur(8px);
+  filter: blur(8px);
+}
+
+.weather {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 2px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  height: 35%;
+  padding: 10px;
+  text-align: center;
+  padding-bottom: 2px;
+}
+
+.sm-box-max {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 30%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 10%;
+  height: 5%;
+  padding: 10px;
+
+}
+
+.sm-box-min {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 10%;
+  height: 5%;
+  padding: 10px;
+}
+
+.sm-box-avg {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 10%;
+  height: 5%;
+  padding: 10px;
+}
+
+.sm-box-season {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 20%;
+  height: 5%;
+  padding: 10px;
+}
+
+.sm-box-wind {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #f1f1f1;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 33%;
+  height: 5%;
+  padding: 10px;
+}
+
+.info {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.ico {
+  vertical-align: sub;
+}
+
+.button_next {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f59958;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.button_next span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button_next span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button_next:hover span {
+  padding-right: 15px;
+}
+
+.button_next:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.next {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 75%;
+  left: 66%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+
+}
+
+.prev {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 75%;
+  left: 33%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+
+}
+
+.button_prev {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f59958;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.button_prev span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button_prev span:after {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -115px;
+  transition: 0.5s;
+}
+
+.button_prev:hover span {
+  padding-right: 15px;
+}
+
+.button_prev:hover span:after {
+  opacity: 1;
+  right: 0;
+}
