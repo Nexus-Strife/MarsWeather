@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect
-import requests
 from datetime import datetime
 from .models import Datas
-from plotly.offline import plot
-from plotly.graph_objects import Scatter
 
 # Create your views here.
 
@@ -16,6 +13,17 @@ def index(request):
         day = datas.day
 
     return render(request, 'wbsite/index.html', locals())
+
+
+def graph(request):
+
+    # Récupère les données des 7 derniers jours
+    datas_week = Datas.objects.raw("SELECT * from wbsite_datas order by id desc limit 7")[::-1]
+
+    # Récupère les données des 30 derniers jours
+    datas_month = Datas.objects.raw("SELECT * from wbsite_datas order by id desc limit 30")[::-1]
+
+    return render(request, "wbsite/graph.html", locals())
 
 
 def re_dir_prev(request, day):  # Méthode de redirection d'url pour le jour précédent
@@ -74,5 +82,11 @@ def next_day(request, day):
     return render(request, 'wbsite/index.html', locals())
 
 
+def test(request):
+    x_data = [416, 426, 429, 430, 431]
+    y_data = [-68, -66, -59, -61, -59]
+    y_prime = [-15, -9, -10, -13, -12]
+    y_beta = [-94, -92, -95, -93, -94]
 
+    return render(request, 'wbsite/test.html', locals())
 

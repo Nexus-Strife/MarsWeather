@@ -5,16 +5,37 @@
         <meta charset="UTF-8">
         <title>Météo à Elysium Planitia</title>
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300&display=swap" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
     </head>
+    <script>
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
+    }
+
+    </script>
     <body>
 
-        <div class="background-image" style="background-image:url({% static 'img/background.jpg' %})"></div>
+    <div class="background-image" style="background-image:url({% static 'img/background.jpg' %})"></div>
+    <div class="menu">
+        <div class="main">
+            <span style="font-size:15px;cursor:pointer;text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;" onclick="openNav()">&#9776; Menu</span>
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'graph' %}">Graphiques</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
         <div class="weather">
             <div class="content">
-                <p>Jour Martien: {{ day }}<b> - {% for datas in curr_day %}</b>{{ datas.current_month_text }} {{ datas.current_year_short }}</p>
+                <p>Jour Martien: {{ day }}<b> - {% for datas in curr_day %}</b>{{ datas.current_earth_day }} {{ datas.current_month_text }} {{ datas.current_year_short }}</p>
 
                 <div class="sm-box-max">
                     <p class="info"><img src="{% static 'img/hot.png' %}" height="20px" width="20px" title="Température max" class="ico">{{ datas.mx_temp }}°C</p>

@@ -12,4 +12,5 @@ class Datas(models.Model):
     avg_dir_wind = models.CharField(max_length=5)
     current_month_text = models.CharField(max_length=10)
     current_year_short = models.IntegerField()
+    current_earth_day = models.IntegerField()
 

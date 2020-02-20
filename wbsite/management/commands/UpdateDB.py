@@ -43,9 +43,10 @@ class Command(BaseCommand):
         min_temp = round(meteo[curr_day]["AT"]["mn"])
         avg_temp = round(meteo[curr_day]["AT"]["av"])
 
-        # Mois et année terrienne en cours
+        # Jour, mois et année terrienne en cours
         current_month_text = datetime.now().strftime('%B')
         current_year_short = datetime.now().strftime('%Y')
+        current_earth_day = datetime.now().strftime('%d') - 1
 
         # Saison en cours
         season = meteo[curr_day]["Season"]
@@ -61,13 +62,8 @@ class Command(BaseCommand):
         # Direction moyenne des vents pour le jour en cours
         avg_dir_wind = meteo[curr_day]["WD"]["most_common"]["compass_point"]
 
-        """
-        datas = Datas(day=curr_day, mx_temp=mx_temp, mn_temp=min_temp, avg_temp=avg_temp,
-                      current_month_text=current_month_text, current_year_short=current_year_short, season=season)
-        datas.save()
-        """
-        cursor.execute("INSERT INTO wbsite_datas(day, mx_temp, min_temp, avg_temp, current_month_text,"
-                       " current_year_short, season, avg_dir_wind) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
-                       (curr_day, mx_temp, min_temp, avg_temp, current_month_text,
+        cursor.execute("INSERT INTO wbsite_datas(day, mx_temp, min_temp, avg_temp, current_earth_day, current_month_text,"
+                       " current_year_short, season, avg_dir_wind) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                       (curr_day, mx_temp, min_temp, avg_temp, current_earth_day, current_month_text,
                         current_year_short, season, avg_dir_wind))
         cnx.commit()

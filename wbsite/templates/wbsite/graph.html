@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Météo à Elysium Planitia</title>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+    </head>
+    <script>
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
+    }
+
+    </script>
+    <body>
+
+    <div class="background-image" style="background-image:url({% static 'img/background.jpg' %})"></div>
+    <div class="menu">
+        <div class="main">
+            <span style="font-size:15px;cursor:pointer;text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;" onclick="openNav()">&#9776; Menu</span>
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'index' %}">Accueil</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+        <div class="temp_week" style="height: 51%;">
+            <div class="content">
+                <p>Evolution des températures sur les 7 derniers jours</p>
+                <canvas id="evol_week" style="width:100%;"></canvas>
+                <script>
+                    Chart.defaults.global.elements.line.fill = false;
+                    var ctx = document.getElementById('evol_week').getContext('2d');
+                    Chart.defaults.global.defaultFontColor='white';
+
+                    var myLineChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: [{% for datas in datas_week %} 'Jour {{datas.day}}', {% endfor %}],
+                            datasets: [{
+                                label: 'Température moyenne (°C)',
+                                borderColor: 'green',
+                                data: [{% for datas in datas_week %} '{{datas.avg_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'green',
+
+                            }, {
+                                label: 'Température la plus haute (°C)',
+                                borderColor: 'red',
+                                data: [{% for datas in datas_week %} '{{datas.mx_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'red',
+
+                            }, {
+                                label: 'Température la plus basse (°C)',
+                                borderColor: 'blue',
+                                data: [{% for datas in datas_week %} '{{ datas.min_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'blue',
+                            }]
+                        },
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="temp_month" style="height: 51%;">
+            <div class="content">
+                <p>Evolution des températures sur les 30 derniers jours</p>
+                <canvas id="evol_month" style="width: 100%;"></canvas>
+                <script>
+                    Chart.defaults.global.elements.line.fill = false;
+                    var ctx = document.getElementById('evol_month').getContext('2d');
+                    Chart.defaults.global.defaultFontColor='white';
+
+                    var myLineChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: [{% for datas in datas_month %} 'Jour {{datas.day}}', {% endfor %}],
+                            datasets: [{
+                                label: 'Température moyenne (°C)',
+                                borderColor: 'green',
+                                data: [{% for datas in datas_month %} '{{datas.avg_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'green',
+
+                            }, {
+                                label: 'Température la plus haute (°C)',
+                                borderColor: 'red',
+                                data: [{% for datas in datas_month %} '{{datas.mx_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'red',
+
+                            }, {
+                                label: 'Température la plus basse (°C)',
+                                borderColor: 'blue',
+                                data: [{% for datas in datas_month %} '{{ datas.min_temp}}', {% endfor %}],
+                                pointRadius: 5,
+                                pointBackgroundColor: 'blue',
+                            }]
+                        },
+                    });
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

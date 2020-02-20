@@ -20,9 +20,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('graph', views.graph, name='graph'),
     path('b/<day>/', views.re_dir_prev, name='re_dir_prev'),
     path('<day>/', views.prev_day, name='prev_day'),
     path('a/<day>/', views.re_dir_next, name='re_dir_next'),
-    path('<day>/', views.next_day, name='next_day')
+    path('<day>/', views.next_day, name='next_day'),
+    path('test/test/', views.test, name='test')
 
 ]
