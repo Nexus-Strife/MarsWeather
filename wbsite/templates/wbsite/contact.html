@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Météo à Elysium Planitia</title>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    </head>
+    <script>
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.backgroundColor = "white";
+    }
+
+    </script>
+    <body>
+
+    <div class="background-image" style="background-image:url({% static 'img/background.jpg' %})"></div>
+    <div class="menu">
+        <div class="main">
+            <span style="font-size:15px;cursor:pointer;text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;" onclick="openNav()">&#9776; Menu</span>
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="{% url 'index' %}">Accueil</a>
+            <a href="{% url 'graph' %}">Graphiques</a>
+        </div>
+    </div>
+        <div class="weather">
+            <div class="content"></div>
+            <h2><center>À propos</center></h2>
+            <p>Cette application a été développée comme passe-temps, elle n'a de réelle intérêt car les informations nous parvenant de Mars sont encore trop peu nombreuses.
+            Je ne souhaite pas pour le moment la déployer. Je l'améliorerai à l'avenir. </p>
+            <p>De plus, les données collectées viennent du rover InSight qui lui n'a pas pour vocation de vivre éternellement ce qui peut s'avérer contraignant et cas
+            de défaillance du robot.</p>
+            <p>Si vous avez des remarques pertinantes à propos de ce projet ou des idées d'améliorations, n'hésitez pas à me contacter par <a href="mailto:b.duplan88@gmail.com">mail</a></p>
+            </div>
+        </div>
+    </body>
+</html>

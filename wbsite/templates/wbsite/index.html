@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 {% load static %}
     <head>
         <meta charset="UTF-8">
@@ -30,7 +30,7 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="{% url 'graph' %}">Graphiques</a>
-            <a href="#">Contact</a>
+            <a href="{% url 'contact' %}">À propos</a>
         </div>
     </div>
         <div class="weather">
@@ -61,19 +61,27 @@
             </div>
         </div>
 
-        <form class="form_next" method="post" action="{% url 're_dir_next' day %}">
+        {% if day == last_day %}
+        <div></div>
+        {% else %}
+        <form class="form_next" method="post" action="{% url 'd_day' day|add:'+1' %}">
             <div class="next">
                 <button class="button_next" type="submit" style="vertical-align:middle"><span>Jour suivant</span></button>
             </div>
             {% csrf_token %}
         </form>
+        {% endif %}
 
-        <form class="form_prev" method="post" action="{% url 're_dir_prev' day %}">
+        {% if day == first_day %}
+        <div></div>
+        {% else %}
+        <form class="form_prev" method="post" action="{% url 'd_day' day|add:'-1' %}">
             <div class="prev">
                 <button class="button_prev" type="submit" style="vertical-align:middle"><span>Jour précédent</span></button>
             </div>
             {% csrf_token %}
         </form>
+        {% endif %}
         {% endfor %}
     </body>
 </html>
