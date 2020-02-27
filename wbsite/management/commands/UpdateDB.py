@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        r = requests.get('https://api.nasa.gov/insight_weather/?api_key=0nrxy4jNH5DCOjOkLtVK3tJfM4FxXxBtj2vdv6sF&feedtype=json&ver=1.0')
+        r = requests.get('https://api.nasa.gov/insight_weather/?api_key=clé&feedtype=json&ver=1.0')
         meteo = r.json()
 
         # Connection à la BD
